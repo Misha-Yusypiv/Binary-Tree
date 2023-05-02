@@ -66,18 +66,17 @@ public class BinaryNode {
 
     //Знаходження елементу//
 
-    public BinaryNode find(int data) {
+    public void find(int data) {
         BinaryNode current = root;
         while (current != null) {
             if (current.getData() == data) {
-                return current;
+                return;
             } else if (data < current.getData()) {
                 current = current.getLeft();
             } else {
                 current = current.getRight();
             }
         }
-        return null;
     }
 
 
@@ -97,7 +96,7 @@ public class BinaryNode {
 
     //Видалення елементів//
 
-    public void remove(int data) {
+    public void remove() {
         root = remove(root, data);
     }
 
@@ -138,7 +137,7 @@ public class BinaryNode {
     //методи для обходу дерева в ширину та глибину//
 
     public void breadthFirstTraversal() {
-        Queue<BinaryNode> queue = new LinkedList<BinaryNode>();
+        Queue<BinaryNode> queue = new LinkedList<>();
         if (root == null) {
             return;
         }
