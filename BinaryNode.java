@@ -1,12 +1,23 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
+
+
 public class BinaryNode {
     private int data;
     private BinaryNode left;
     private BinaryNode right;
 
-    private BinaryNode root;  //
+    private BinaryNode root;
+
+// Конструктор за замовчуванням для класу Binary node
+    Tree::Binary_node::Binary_node() {
+        data = 0; // Ініціалізуємо дані як 0
+        left = nullptr; // Ініціалізуємо лівого нащадка як nullptr
+        right = nullptr; // Ініціалізуємо правого нащадка як nullptr
+    }
+
+    //
     public BinaryNode(int data) {
         this.data = data;
         this.left = null;
@@ -96,15 +107,15 @@ public class BinaryNode {
 
     //Видалення елементів//
 
-    public void remove() {
-        root = remove(root, data);
+    public void remove(int value) {
+        root = remove(root, value);
     }
 
-    private BinaryNode remove(BinaryNode node, int data) {
+    private BinaryNode remove(BinaryNode node, int value) {
         if (node == null) {
             return null;
         }
-        if (data == node.getData()) {
+        if (value == node.getData()) {
             if (node.getLeft() == null && node.getRight() == null) {
                 return null;
             }
@@ -119,11 +130,11 @@ public class BinaryNode {
             node.setRight(remove(node.getRight(), smallestValue));
             return node;
         }
-        if (data < node.getData()) {
-            node.setLeft(remove(node.getLeft(), data));
+        if (value < node.getData()) {
+            node.setLeft(remove(node.getLeft(), value));
             return node;
         }
-        node.setRight(remove(node.getRight(), data));
+        node.setRight(remove(node.getRight(), value));
         return node;
     }
 
@@ -155,4 +166,16 @@ public class BinaryNode {
     }
 
 
+    public void depthFirstTraversal() {
+        depthFirstTraversal(root);
+    }
+
+    private void depthFirstTraversal(BinaryNode node) {
+        if (node == null) {
+            return;
+        }
+        System.out.print(node.getData() + " ");
+        depthFirstTraversal(node.getLeft());
+        depthFirstTraversal(node.getRight());
+    }
 }
